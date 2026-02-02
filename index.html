@@ -57,7 +57,6 @@
         font-weight: 700;
       }
 
-      /* Responsive Chart */
       .chart-container {
         background: var(--card-bg);
         padding: 2rem;
@@ -67,7 +66,6 @@
         overflow-x: auto;
       }
 
-      /* Grid Info Cards */
       .residency-info {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -88,7 +86,6 @@
         color: var(--primary);
       }
 
-      /* Accordion for Emails */
       .email-list {
         display: flex;
         flex-direction: column;
@@ -182,30 +179,30 @@
   <body>
     <header>
       <h1>AMSKU Residency Program</h1>
-      <p>12-Month Automation & Communication Guide</p>
+      <p>Engagement Workflow & Pathway Review Strategy</p>
     </header>
 
     <div class="container">
       <div class="residency-info">
         <div class="info-card">
-          <h3>Program Stats</h3>
+          <h3>Program Pillars</h3>
           <ul>
-            <li>70+ Hours Hands-on Training</li>
-            <li>48 Weekly Virtual Webinars</li>
-            <li>24 One-on-One Sessions</li>
+            <li>HT (Hands-on Training) Priority</li>
+            <li>VT (Virtual Training) Foundation</li>
+            <li>Weekly Tuesday Collaborative Sessions</li>
           </ul>
         </div>
         <div class="info-card">
-          <h3>Key Contacts</h3>
+          <h3>Key Success Metrics</h3>
           <ul>
-            <li><strong>Colin Rigney:</strong> Transition Calls</li>
-            <li><strong>Brianne:</strong> Tuesday Sessions</li>
-            <li><strong>Ryan Martin:</strong> Mentorship</li>
+            <li>150 Exam Attestation Goal</li>
+            <li>Pathway Reviews (Month 10)</li>
+            <li>RMSK Board Certification Prep</li>
           </ul>
         </div>
       </div>
 
-      <h2 class="section-title">Visual Workflow</h2>
+      <h2 class="section-title">Program Logic Workflow</h2>
       <div class="chart-container">
         <pre class="mermaid">
 graph TD
@@ -226,25 +223,25 @@ graph TD
         CheckVT -- Yes --> E3[Email 3: VT Milestone]
     end
 
-    subgraph P3 [Phase 3: Monthly Progress]
+    subgraph P3 [Phase 3: Monthly Maintenance]
         E3 --> MonthlyLoop{Months 1-9}
         MonthlyLoop --> E7[Email 7: Progress Report]
     end
 
-    subgraph P4 [Phase 4: Transition]
-        MonthlyLoop -- Month 10 --> E8[Email 8: Residency Transition]
-        E8 --> E9[Email 9: Internal Alert]
+    subgraph P4 [Phase 4: Clinical Review]
+        MonthlyLoop -- Month 10 --> E8[Email 8: Clinical Progress Call]
+        E8 --> E9[Email 9: Internal Review Form]
         E9 --> CertGen[Generate Certificate]
     end
 
     subgraph P5 [Phase 5: Completion]
         CertGen --> E10[Email 10: Final Delivery]
-        E10 --> End([Month 11 End])
+        E10 --> End([Program Complete])
     end
         </pre>
       </div>
 
-      <h2 class="section-title">Automated Email Templates</h2>
+      <h2 class="section-title">Automated Email Library</h2>
       <div class="email-list">
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
@@ -264,17 +261,18 @@ graph TD
               Our program prioritizes HT to ensure you get probe-in-hand
               experience as early as possible. 👉 [Book Your Training Sessions
               Here] Tuesday Trainings: As a resident, you have access to our
-              specialized Tuesday sessions. If you have questions about these,
-              please contact Brianne directly at [Insert Phone Number]. She is
-              your point of contact for Tuesday training coordination. Warm
-              regards, Dr. Ryan Martin & Dr. Colin Rigney
+              specialized Tuesday sessions. If you have questions about these or
+              need to coordinate, please contact Brianne directly at [Insert
+              Phone Number]. She is your point of contact for all things related
+              to Tuesday training coordination. Warm regards, Dr. Ryan Martin &
+              Dr. Colin Rigney
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 2: Orientation Not Completed</span>
+            <span class="email-title">Email 2: Orientation Reminder</span>
             <span class="email-tag">Nudge</span>
           </div>
           <div class="email-content">
@@ -293,7 +291,7 @@ graph TD
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 3: VT Completed</span>
+            <span class="email-title">Email 3: VT Scheduled/Completed</span>
             <span class="email-tag">Milestone</span>
           </div>
           <div class="email-content">
@@ -312,7 +310,7 @@ graph TD
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 4: HT Completed</span>
+            <span class="email-title">Email 4: HT Scheduled/Completed</span>
             <span class="email-tag">Milestone</span>
           </div>
           <div class="email-content">
@@ -323,15 +321,16 @@ graph TD
             <div class="email-body">
               Hi [First Name], Congratulations on completing your first hands-on
               training session! This is where the real transformation happens.
-              Every session brings you closer to RMSK certification. Schedule
-              your next priority session: 👉 [Book Hands-On Training]
+              With 70+ hours of practice ahead, every session brings you closer
+              to RMSK certification. Schedule your next priority session: 👉
+              [Book Hands-On Training]
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 5: No VT Scheduled Yet</span>
+            <span class="email-title">Email 5: VT Reminder</span>
             <span class="email-tag">Nudge</span>
           </div>
           <div class="email-content">
@@ -349,8 +348,8 @@ graph TD
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 6: No HT Scheduled Yet</span>
-            <span class="email-tag">Priority Nudge</span>
+            <span class="email-title">Email 6: HT Priority Reminder</span>
+            <span class="email-tag">High Priority</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
@@ -369,8 +368,8 @@ graph TD
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 7: Monthly Progress Report</span>
-            <span class="email-tag">Monthly</span>
+            <span class="email-title">Email 7: Monthly Progress Update</span>
+            <span class="email-tag">Recurring</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
@@ -390,62 +389,62 @@ graph TD
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 8: Transition Session</span>
+            <span class="email-title">Email 8: Clinical Progress Call</span>
             <span class="email-tag">Month 10</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> ACTION REQUIRED: Your Residency
-              Transition and Advancement Session
+              <strong>Subject:</strong> ACTION REQUIRED: Clinical Progress and
+              Pathway Review
             </div>
             <div class="email-body">
               Hi [First Name], You have reached Month 10 of your residency! It
-              is time to schedule your Residency Transition and Advancement
+              is time to schedule your Clinical Progress and Pathway Review
               Session with Dr. Colin Rigney. In this session, we will determine
               your final next steps, evaluate your progress toward the 150-scan
-              attestation, and plan for your transition into full clinical
-              mastery. 👉 [Schedule Your Advancement Session with Colin]
+              attestation (if that’s a goal), and plan for your transition into
+              full clinical mastery. 👉 [Schedule Your Advancement Session with
+              Colin]
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 9: Internal to Colin</span>
+            <span class="email-title">Email 9: Internal Log for Colin</span>
             <span class="email-tag">Internal</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> Internal: Transition Session Scheduled -
-              [Student Name]
+              <strong>Subject:</strong> Internal: Clinical Review Log - [Student
+              Name]
             </div>
             <div class="email-body">
-              Hi Colin, [Student Name] has scheduled their Residency Transition
-              and Advancement Session. Please use the following form to input
-              their progress data and approve the automated certificate
-              generation: 👉 [Internal Data Entry Link]
+              Hi Colin, [Student Name] has reached their Month 10 Clinical
+              Progress and Pathway Review. Please use the following form to
+              input their final assessment results and approve the automated
+              certificate generation: 👉 [Internal Data Entry Link]
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 10: Final Completion</span>
-            <span class="email-tag">Completion</span>
+            <span class="email-title">Email 10: Residency Completion</span>
+            <span class="email-tag">Final</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
               <strong>Subject:</strong> Congratulations! Your AMSKU Residency
-              Certificate is Here
+              Certificate
             </div>
             <div class="email-body">
               Hi [First Name], Congratulations on reaching the end of your
-              residency! Based on your final Advancement Session, we are proud
-              to award you your Certificate of Completion. Attached, you will
-              find your official certificate and your signed attestation for
-              your 150 ultrasound examinations. We look forward to seeing your
-              continued success! Warm regards, Dr. Ryan Martin & Dr. Colin
-              Rigney
+              residency! Following your Clinical Progress and Pathway Review, we
+              are proud to award you your Certificate of Completion. Attached,
+              you will find your official certificate and your signed
+              attestation for your 150 ultrasound examinations. We look forward
+              to seeing your continued success in the field!
             </div>
           </div>
         </div>
@@ -453,7 +452,7 @@ graph TD
     </div>
 
     <footer>
-      <p>&copy; 2026 Advanced MSK Ultrasound Center. Gilbert, AZ.</p>
+      <p>&copy; 2026 Advanced MSK Ultrasound Center. All Rights Reserved.</p>
     </footer>
 
     <script>
