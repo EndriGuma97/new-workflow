@@ -26,6 +26,7 @@
         --card-bg: #ffffff;
         --text-main: #0f172a;
         --border: #e2e8f0;
+        --urgent: #dc2626;
       }
 
       body {
@@ -81,6 +82,10 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       }
 
+      .info-card.priority {
+        border-top-color: var(--urgent);
+      }
+
       .info-card h3 {
         margin-top: 0;
         color: var(--primary);
@@ -128,6 +133,11 @@
         text-transform: uppercase;
       }
 
+      .email-tag.urgent {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+
       .email-content {
         display: none;
         padding: 1.5rem;
@@ -163,41 +173,33 @@
         color: var(--secondary);
         font-size: 0.85rem;
       }
-
-      @media (max-width: 600px) {
-        .chart-container {
-          padding: 1rem;
-        }
-        .email-header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.5rem;
-        }
-      }
     </style>
   </head>
   <body>
     <header>
       <h1>AMSKU Residency Program</h1>
-      <p>Engagement Workflow & Pathway Review Strategy</p>
+      <p>Engagement Workflow & Foundations Pathway Strategy</p>
     </header>
 
     <div class="container">
       <div class="residency-info">
-        <div class="info-card">
-          <h3>Program Pillars</h3>
+        <div class="info-card priority">
+          <h3>Foundations Strategy</h3>
           <ul>
-            <li>HT (Hands-on Training) Priority</li>
-            <li>VT (Virtual Training) Foundation</li>
-            <li>Weekly Tuesday Collaborative Sessions</li>
+            <li>
+              <strong>HT Weekend Priority:</strong> First 2 weekends scheduled
+              up-front.
+            </li>
+            <li>Orientation call is the primary trigger.</li>
+            <li>Schedule HT in conjunction with VT.</li>
           </ul>
         </div>
         <div class="info-card">
-          <h3>Key Success Metrics</h3>
+          <h3>Operational Pillars</h3>
           <ul>
-            <li>150 Exam Attestation Goal</li>
-            <li>Pathway Reviews (Month 10)</li>
-            <li>RMSK Board Certification Prep</li>
+            <li>Weekly Tuesday Collaborative Sessions</li>
+            <li>Brianne: Primary Contact for scheduling & Tuesday sessions.</li>
+            <li>Automated Progress Reports (VT/HT Status).</li>
           </ul>
         </div>
       </div>
@@ -206,36 +208,35 @@
       <div class="chart-container">
         <pre class="mermaid">
 graph TD
-    subgraph P1 [Phase 1: Orientation]
+    subgraph P1 [Phase 1: Orientation & Onboarding]
         Start([Enrolled]) --> CheckOri{Orientation Scheduled?}
-        CheckOri -- No --> E2[Email 2: Reminder]
-        CheckOri -- Yes --> E1[Email 1: Welcome]
+        CheckOri -- No --> E2[Email 2: Orientation Reminder]
+        CheckOri -- Yes --> E1[Email 1: Welcome & Priority HT Booking]
     end
 
-    subgraph P2 [Phase 2: Training Priority]
-        E1 --> CheckHT{HT Scheduled?}
-        E2 --> CheckHT
-        CheckHT -- No --> E6[Email 6: HT Priority]
-        CheckHT -- Yes --> E4[Email 4: HT Milestone]
+    subgraph P2 [Phase 2: Training Gating]
+        E1 --> CheckHT{First 2 HT Weekends Booked?}
+        CheckHT -- No --> E6[Email 6: URGENT HT Scheduling]
+        CheckHT -- Yes --> E4[Email 4: HT Milestone Confirmation]
+        
         E4 --> CheckVT{VT Scheduled?}
-        E6 --> CheckVT
-        CheckVT -- No --> E5[Email 5: VT Reminder]
-        CheckVT -- Yes --> E3[Email 3: VT Milestone]
+        CheckVT -- No --> E5[Email 5: VT Booking Reminder]
+        CheckVT -- Yes --> E3[Email 3: VT Milestone Confirmation]
     end
 
-    subgraph P3 [Phase 3: Monthly Maintenance]
+    subgraph P3 [Phase 3: Monthly Maintenance Loop]
         E3 --> MonthlyLoop{Months 1-9}
-        MonthlyLoop --> E7[Email 7: Progress Report]
+        MonthlyLoop --> E7[Email 7: Progress Update + Training Status]
     end
 
-    subgraph P4 [Phase 4: Clinical Review]
-        MonthlyLoop -- Month 10 --> E8[Email 8: Clinical Progress Call]
-        E8 --> E9[Email 9: Internal Review Form]
-        E9 --> CertGen[Generate Certificate]
+    subgraph P4 [Phase 4: Transition & Advancement]
+        MonthlyLoop -- Month 10 --> E8[Email 8: Residency Transition Session Call]
+        E8 --> E9[Email 9: Internal Clinical Assessment Form]
+        E9 --> CertGen[Automated Certificate Generation]
     end
 
-    subgraph P5 [Phase 5: Completion]
-        CertGen --> E10[Email 10: Final Delivery]
+    subgraph P5 [Phase 5: Graduation]
+        CertGen --> E10[Email 10: Final Certificate Delivery]
         E10 --> End([Program Complete])
     end
         </pre>
@@ -250,22 +251,25 @@ graph TD
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> Congratulations on Completing Your
-              Orientation – Let's Get Started!
+              <strong>Subject:</strong> Welcome to AMSKU – Immediate Action:
+              Schedule Your First 2 HT Weekends
             </div>
             <div class="email-body">
-              Hi [First Name], Congratulations on completing your orientation
-              call! We're thrilled to officially welcome you to the AMSKU MSK
-              Ultrasound Residency Program. Important Next Step: Please schedule
-              your Hands-on Training (HT) and Virtual Training (VT) sessions.
-              Our program prioritizes HT to ensure you get probe-in-hand
-              experience as early as possible. 👉 [Book Your Training Sessions
-              Here] Tuesday Trainings: As a resident, you have access to our
-              specialized Tuesday sessions. If you have questions about these or
-              need to coordinate, please contact Brianne directly at [Insert
-              Phone Number]. She is your point of contact for all things related
-              to Tuesday training coordination. Warm regards, Dr. Ryan Martin &
-              Dr. Colin Rigney
+              Hi [First Name], Congratulations on completing your orientation!
+              We are thrilled to officially welcome you.
+
+              <strong>Critical Next Step:</strong> As a Foundations candidate,
+              it is a priority to get your
+              <strong>first two weekends of Hands-on Training (HT)</strong>
+              scheduled as early as possible. We recommend scheduling these in
+              conjunction with your Virtual Training (VT) sessions to ensure a
+              seamless learning curve. 👉 [Book Your HT Weekends & VT Sessions
+              Here]
+
+              <strong>Tuesday Trainings:</strong> For any questions or to
+              coordinate Tuesday sessions, please contact Brianne directly at
+              [Insert Phone Number]. Warm regards, Dr. Ryan Martin & Dr. Colin
+              Rigney
             </div>
           </div>
         </div>
@@ -277,71 +281,68 @@ graph TD
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> Quick Reminder – Complete Your
+              <strong>Subject:</strong> Action Required – Complete Your
               Orientation Call
             </div>
             <div class="email-body">
-              Hi [First Name], Welcome to the AMSKU MSK Ultrasound Residency
-              Program! Before you can schedule your priority Hands-on Training,
-              we need to complete your orientation. Please schedule your
-              orientation call here: 👉 [Book Your Orientation Call]
+              Hi [First Name], Welcome to the AMSKU Residency! To ensure you get
+              priority access to our Hands-on Training weekends, we need to
+              complete your orientation first. Please book your call here: 👉
+              [Book Your Orientation Call]
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 3: VT Scheduled/Completed</span>
+            <span class="email-title">Email 3: VT Milestone</span>
             <span class="email-tag">Milestone</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> Great Progress – Keep the Momentum
-              Going!
+              <strong>Subject:</strong> Great Progress – Your Virtual Training
+              is Underway!
             </div>
             <div class="email-body">
-              Hi [First Name], Congratulations on completing your first virtual
-              training session! You're off to a fantastic start. Consistency is
-              key to mastery. Schedule your next session: 👉 [Book Virtual
-              Training]
+              Hi [First Name], Well done on scheduling/completing your VT
+              session! These modules provide the diagnostic foundation needed to
+              excel during your HT weekends. Keep that momentum going!
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 4: HT Scheduled/Completed</span>
+            <span class="email-title">Email 4: HT Milestone</span>
             <span class="email-tag">Milestone</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> Hands-On Training Underway – You're
-              Building Real Skills!
+              <strong>Subject:</strong> Hands-On Training Confirmed – Real Skill
+              Building Starts Now
             </div>
             <div class="email-body">
-              Hi [First Name], Congratulations on completing your first hands-on
-              training session! This is where the real transformation happens.
-              With 70+ hours of practice ahead, every session brings you closer
-              to RMSK certification. Schedule your next priority session: 👉
-              [Book Hands-On Training]
+              Hi [First Name], Excellent work securing your Hands-on Training
+              dates. With 70+ hours of lab work ahead, every weekend brings you
+              closer to RMSK certification and clinical mastery.
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 5: VT Reminder</span>
+            <span class="email-title">Email 5: VT Booking Reminder</span>
             <span class="email-tag">Nudge</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> Ready to Start Your Virtual Training?
+              <strong>Subject:</strong> Don't Forget Your Virtual Training
+              Foundation
             </div>
             <div class="email-body">
-              Hi [First Name], We noticed you haven't scheduled your virtual
-              training. These sessions provide the diagnostic foundation you
-              need to complement your hands-on work. Schedule here: 👉 [Book
-              Virtual Training]
+              Hi [First Name], We noticed your HT is scheduled, but your VT is
+              not. These sessions complement your lab work—please ensure you
+              book your next Virtual Training session here: 👉 [Link]
             </div>
           </div>
         </div>
@@ -349,19 +350,18 @@ graph TD
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
             <span class="email-title">Email 6: HT Priority Reminder</span>
-            <span class="email-tag">High Priority</span>
+            <span class="email-tag urgent">High Priority</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> Priority Action: Schedule Your First
-              Hands-On Session
+              <strong>Subject:</strong> URGENT: Schedule Your First 2 Hands-On
+              Weekends
             </div>
             <div class="email-body">
-              Hi [First Name], We noticed you haven't scheduled your first
-              hands-on training session yet. At AMSKU, we prioritize HT because
-              there is no substitute for probe-in-hand experience. Let’s get you
-              in the lab. Schedule your priority HT session now: 👉 [Book
-              Hands-On Training]
+              Hi [First Name], Priority Action Required: We noticed you haven't
+              scheduled your first two HT weekends yet. At AMSKU, probe-in-hand
+              experience is our absolute priority. To stay on track for your
+              Foundations goals, please book your sessions now: 👉 [Link]
             </div>
           </div>
         </div>
@@ -373,45 +373,43 @@ graph TD
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> Your Monthly AMSKU Residency Progress
+              <strong>Subject:</strong> Your Monthly AMSKU Residency Status
               Report
             </div>
             <div class="email-body">
-              Hi [First Name], Here is your current residency status update: -
-              Hands-on Training (HT): [Scheduled/Not Scheduled] - Virtual
-              Training (VT): [Scheduled/Not Scheduled] Tuesday Training
-              Reminder: Don't forget to join our weekly Tuesday sessions. For
-              questions or to message the team regarding these sessions, text
-              Brianne at [Insert Phone Number].
+              Hi [First Name], Here is your current residency status: - Hands-on
+              Training (HT): [Status] - Virtual Training (VT): [Status]
+
+              <strong>Tuesday Training:</strong> Text Brianne at [Phone Number]
+              with any coordination questions.
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 8: Clinical Progress Call</span>
+            <span class="email-title">Email 8: Residency Transition</span>
             <span class="email-tag">Month 10</span>
           </div>
           <div class="email-content">
             <div class="email-meta">
-              <strong>Subject:</strong> ACTION REQUIRED: Clinical Progress and
-              Pathway Review
+              <strong>Subject:</strong> ACTION REQUIRED: Residency Transition
+              and Advancement Session
             </div>
             <div class="email-body">
-              Hi [First Name], You have reached Month 10 of your residency! It
-              is time to schedule your Clinical Progress and Pathway Review
-              Session with Dr. Colin Rigney. In this session, we will determine
-              your final next steps, evaluate your progress toward the 150-scan
-              attestation (if that’s a goal), and plan for your transition into
-              full clinical mastery. 👉 [Schedule Your Advancement Session with
-              Colin]
+              Hi [First Name], You've reached Month 10! It's time to schedule
+              your
+              <strong>Residency Transition and Advancement Session</strong> with
+              Dr. Colin Rigney. We will review your progress and determine your
+              next steps for clinical advancement. 👉 [Schedule Your Session
+              with Colin]
             </div>
           </div>
         </div>
 
         <div class="email-item">
           <div class="email-header" onclick="toggleEmail(this)">
-            <span class="email-title">Email 9: Internal Log for Colin</span>
+            <span class="email-title">Email 9: Internal Assessment Log</span>
             <span class="email-tag">Internal</span>
           </div>
           <div class="email-content">
@@ -420,10 +418,9 @@ graph TD
               Name]
             </div>
             <div class="email-body">
-              Hi Colin, [Student Name] has reached their Month 10 Clinical
-              Progress and Pathway Review. Please use the following form to
-              input their final assessment results and approve the automated
-              certificate generation: 👉 [Internal Data Entry Link]
+              Hi Colin, [Student Name] has reached their Month 10 Advancement
+              Session. Please complete the review form here to approve their
+              graduation certificate: 👉 [Form Link]
             </div>
           </div>
         </div>
@@ -439,12 +436,10 @@ graph TD
               Certificate
             </div>
             <div class="email-body">
-              Hi [First Name], Congratulations on reaching the end of your
-              residency! Following your Clinical Progress and Pathway Review, we
-              are proud to award you your Certificate of Completion. Attached,
-              you will find your official certificate and your signed
-              attestation for your 150 ultrasound examinations. We look forward
-              to seeing your continued success in the field!
+              Hi [First Name], Congratulations! Attached is your official
+              Certificate of Completion and your signed 150-scan attestation. We
+              are proud of your progress and look forward to your success in MSK
+              Ultrasound!
             </div>
           </div>
         </div>
